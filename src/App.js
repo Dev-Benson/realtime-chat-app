@@ -1,9 +1,12 @@
 import React from 'react';
+import HEADER from "./header/header";
+import CONTAINER from "./container/container";
 
 const App = () => (
-    <div className="container">
-        <h1>Hello World,! React!</h1>
-    </div>
+    <>
+    <HEADER />
+    <CONTAINER />
+    </>
 )
 
 export default App;

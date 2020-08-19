@@ -1,0 +1,147 @@
+
+
+#chat {
+    display: grid;
+    height: 100%;
+    background-color: rgb(210, 214, 210);
+    grid-template-rows: 60px minmax(0, 1fr) minmax(auto, 65px);
+}
+
+#chat-buddy {
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: honeydew;
+}
+
+#message-container {
+    position: relative;
+    padding: .5px 15px;
+}
+
+#type-message, #search-contact {
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+#type-message {
+    width: 100%;
+    padding: 2px 8px 20px 8px ;
+}
+
+#message {
+    width: auto;
+}
+
+.buddy, .me {
+    background-color: honeydew;
+    padding: 12px;
+    border-radius: 7px;
+    max-width: 70%;
+}
+
+.buddy i, .me i {
+    float: right;
+    padding: 12px 2px 3px 2px;
+    font-size: 12px;
+}
+
+.buddy {
+    float: left;
+}
+
+.user-image, .current-image {
+    height: 42px;
+    width: 42px;
+    border-radius: 50%;
+    margin: 0 10px;
+}
+
+.current-image {
+    height: 30px;
+    width: 30px;
+}
+
+.contact {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    border-radius: 20px;
+    margin: 5px 0;
+}
+
+.me {
+    float: right;
+}
+
+.search {
+    width: 100%;
+    padding: 10px;
+    border-radius: 2px 0px 0px 2px;
+    border: none
+}
+
+.send-button {
+    width: 5%;
+    font-size: 20px;
+}
+
+.chat-input {
+    /* height: 25px; */
+    background-color: white;
+    border-radius: 35px;
+}
+
+.icons {
+    padding-right: 10px;
+}
+
+.icons i {
+    font-size: .8rem;
+    padding: 0 8px;
+    font-size: 20px;
+}
+
+
+@media screen and (max-width: 425px) {
+
+    #chat {
+        display: none;
+    }
+
+    #chat {
+        width: 100vw;
+    }
+
+    #chat-buddy {
+        width: 100%;
+        padding: 5px 5px;
+    }
+
+    #type-message {
+        padding: 10px;
+        max-width: 100vw;
+    }
+
+    form {
+        width: 100vw;
+    }
+
+/*classes*/
+    .buddy, .me {
+        max-width: 80vw;
+        font-size: 13px;
+    }
+
+    .icons i {
+        font-size: 14px;
+    }
+
+    .search {
+        width: 90%;
+        margin-right: 2px;
+    }
+}

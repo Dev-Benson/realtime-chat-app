@@ -1,0 +1,5 @@
+#container {
+    border-top: solid .2px rgba(128, 128, 128, 0.979);
+    display: grid;
+    grid-template-columns: 350px minmax(auto, 1fr);
+}
