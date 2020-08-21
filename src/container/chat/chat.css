@@ -17,8 +17,9 @@
 }
 
 #message-container {
-    position: relative;
     padding: .5px 15px;
+    height: calc(100%-20px);
+    max-height: calc(100%-20px);
 }
 
 #type-message, #search-contact {
@@ -41,6 +42,7 @@
     padding: 12px;
     border-radius: 7px;
     max-width: 70%;
+    clear: both;
 }
 
 .buddy i, .me i {
