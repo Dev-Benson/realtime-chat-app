@@ -1,16 +1,27 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import user from "../../images/user.jpg"
 import {handle_submit} from "./helpers/handle_submit";
 import { socket } from "../../socket"
 import "./chat.css";
 
 
-const CHAT =( )=> {
+const CHAT =()=> {
 
     const [chats, setChats] = useState([]);
     const [online_status, setOnline_status] = useState("offline")
     const [message_status, setMessage_status] = useState("sending")
 
+    const messages_ref = useRef(chats[chats.length-1]);
+    const to_last_message =()=> {
+        messages_ref.current.scrollIntoView({
+            behavior: "smooth"
+        });
+        console.log("called");
+    }
+
+    let ref = <span ref={messages_ref}></span>;
+
+    // useEffect=(()=>to_last_message(),[])
     const chat_message = (
         {
             time_stamp,
@@ -26,6 +37,9 @@ const CHAT =( )=> {
                 </p>
             ]
         );
+
+        to_last_message();
+        console.log(messages_ref)
     };
 
     socket.on("buddy", message => {chat_message(message); console.log("got here")} );
@@ -46,7 +60,7 @@ const CHAT =( )=> {
                 </span>
             </span>
 
-            <section id="message-container" >
+            <section  id="message-container" >
 
                 <p class="buddy">
                     hey Nockk, I heard you learning to fight karate now.
@@ -66,8 +80,8 @@ const CHAT =( )=> {
 
             </section>
             <form id="type-message" name="chat" onSubmit={ e=> handle_submit( e, chat_message) } >
-                <textarea type="" name="message-box" class="search chat-input" autoFocus></textarea>
-                <button class="send-button" type="submit"><i class="fa fa-user"></i></button>
+                <textarea type="" name="message-box" className="search chat-input" autoFocus></textarea>
+                <button className="send-button" type="submit"><i className="fa fa-user"></i></button>
             </form>
 
         </section>

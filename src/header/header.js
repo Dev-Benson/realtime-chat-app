@@ -6,7 +6,7 @@ const HEADER =()=> {
     return (
         <section id="header" >
             <p>chat app</p>
-            <span class="contact">
+            <span className="contact">
                 <img src={user} alt="user image" class="current-image" />
                 <p>Nockk lynn </p>
             </span>
