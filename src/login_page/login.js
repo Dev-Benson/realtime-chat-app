@@ -2,12 +2,28 @@
 
 import React, { useState, useEffect } from "react";
 import { handle_submit } from "./login_page_forms";
+import "./login.css";
 
 export const DEMO =( {dispatch} )=> {
+
+    const [response, setResponse] = useState("");
+
+    const callback=(message, bool)=> {
+        setResponse(message);
+        if (bool === true){
+            dispatch({action: "logged_in"})
+        }
+    }
+
     return(
-        <form onSubmit={e=> {e.preventDefault(); dispatch({action: "logged_in"}) } }>
-            <label htmlFor="name" >Join App</label>
-            <input name="name" type="text" className={"name"} placeholder={"pick a nick name"} autoFocus/>
+        <form id="demo_form" onSubmit={
+            e=> {
+                handle_submit(e, callback)
+            } 
+        }>
+            <p className="join_response">{response}</p>
+            <label htmlFor="name" className="name_label" >Join Live Chat</label>
+            <input id="name" name="name" type="text" className={"name"} placeholder={"pick a nick name"} autoFocus/>
             <button type="submit" className={"login_button"} >Log In</button>
         </form>
     )

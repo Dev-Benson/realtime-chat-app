@@ -15,7 +15,7 @@ body {
     margin: 0;
 }
 
-#root {
+#chat_root {
     background-color: rgb(210, 214, 210);
     display: grid;
     height: 100vh;

@@ -2,12 +2,22 @@ import React, { useState, useEffect, useRef } from "react";
 import user from "../../images/user.jpg"
 import {handle_submit} from "./helpers/handle_submit";
 import { socket } from "../../socket"
+import { userObject } from "../../header/header";
 import "./chat.css";
 
 
 const CHAT =()=> {
 
+
+    let space = (
+        <span class="contact">
+            <img src={user} alt="user" class="current-image" />
+            <p>The Common Room <br/><i>{online_status}</i> </p>
+        </span>
+    )
+
     const [chats, setChats] = useState([]);
+    const [chat_space, setChat_space] = useState(space);
     const [online_status, setOnline_status] = useState("offline")
     const [message_status, setMessage_status] = useState("sending")
 
@@ -24,21 +34,22 @@ const CHAT =()=> {
     // useEffect=(()=>to_last_message(),[])
     const chat_message = (
         {
-            time_stamp,
+            time_stamp = "..:..",
             message,
             className="me",
+            sender
         }) => {
             
         setChats(
             [...chats,
                 <p className={className} >
                     {message} <br/>
-                    <i className={message_status} > {time_stamp} </i>
+                    <i className={message_status} > { sender, `@${time_stamp}`} </i>
                 </p>
             ]
         );
 
-        to_last_message();
+        // to_last_message();
         console.log(messages_ref)
     };
 
@@ -49,10 +60,7 @@ const CHAT =()=> {
     return (
         <section id="chat">
             <span id="chat-buddy">
-                <span class="contact">
-                    <img src={user} alt="user" class="current-image" />
-                    <p>Nockk lynn <br/><i>{online_status}</i> </p>
-                </span>
+                {chat_space}
                 <span class="icons" >
                     <i class="fa fa-video"></i>
                     <i class="fa fa-phone"></i>                    
@@ -79,7 +87,7 @@ const CHAT =()=> {
                 { chats }
 
             </section>
-            <form id="type-message" name="chat" onSubmit={ e=> handle_submit( e, chat_message) } >
+            <form id="type-message" name="chat" onSubmit={ e=> handle_submit( e, chat_message , userObject.nickName) } >
                 <textarea type="" name="message-box" className="search chat-input" autoFocus></textarea>
                 <button className="send-button" type="submit"><i className="fa fa-user"></i></button>
             </form>

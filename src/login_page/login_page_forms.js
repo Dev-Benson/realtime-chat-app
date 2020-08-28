@@ -1,19 +1,14 @@
-// import { socket } from "../../../socket";
+import { socket } from "../socket";
 
 export const handle_submit =( e, callback )=> {
-    
+
     e.preventDefault();
     let formData = new FormData(e.target);
-    let message;
+    let nickName;
 
-    formData.forEach( data => message = data);
-    callback({
-        message
-    });
-
-    // console.log({message});
-    e.target.reset()
-
-    // socket.emit( "chat_message" , {message});
+    formData.forEach( data => nickName = data);
+    socket.emit("join", { nickName}, callback );
+    console.log(nickName,callback );
+    // e.target.reset()
 
 };

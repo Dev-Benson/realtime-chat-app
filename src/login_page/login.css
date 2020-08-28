@@ -1,0 +1,50 @@
+
+
+#demo_form {
+    /* place-self: center; */
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    place-content: center;
+    background: white;
+    width: 100%;
+    padding: 0 15px;
+}
+
+label[for=name] {
+    text-align: center;
+    margin: 35px;
+}
+
+.name {
+    text-align: center;
+    border-width: 0 0 2px;
+    padding: 5px;
+    border-bottom-style: groove;
+    font-size: larger;
+}
+
+.login_button {
+    place-self: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: large;
+    padding: 5px 20px;
+}
+
+#welcome_page {
+    background-color: rgb(210, 214, 210);
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 60% 1fr;
+    margin: 0;
+    max-width: 100vw;
+}
+
+#text_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
