@@ -4,3 +4,11 @@
     align-items: center;
     padding: 3px 40px;
 }
+
+@media screen and (max-width: 425px) {
+
+    #header {
+        padding: 3px 10px;
+    }
+
+}

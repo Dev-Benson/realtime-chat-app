@@ -1,39 +1,57 @@
 import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "../../device_hook";
 import user_img from "../../images/user.jpg"
 import "./aside.css";
-import { socket, selected_user } from "../../socket";
+import { socket } from "../../socket";
 
 const ASIDE =()=> {
 
     const [users, setUsers] = useState([]);
+    const [value, setValue] = useState("");
+    // const [className, setClassName] = useState("");
+    const [user_store, setUser_store] = useState([]);
+
+    let screen = useMediaQuery()
 
     socket.on("user_joined", user_joined=> {
-        setUsers([...users,user_joined.nickName]);
-        console.log(user_joined)
+        setUser_store([...user_store,user_joined.nickName]);
     })
 
-    socket.on("old_users", (old_users) => setUsers(old_users) )
+    socket.on("old_users", (old_users) => {
+        setUser_store(old_users);       
+    } )
+
+    useEffect(()=>{
+        setUsers(user_store);
+        // screen <= 425 ? setClassName("hide") : setClassName("");
+    }, [user_store])
+
+    const handle_change=(e)=>{
+        setValue(e.target.value)
+        let filtered_users = user_store.filter( user => user.includes(e.target.value) );
+        e.target.value === "" ? setUsers(user_store) : setUsers(filtered_users)
+    }
 
     return (
-        <aside id="contact-list">
+        <aside id="contact-list" >
 
             <form id="search-contact">
-                <input type="search" class="search" placeholder="search contact" />
-                <button type="submit" class="" ><i class="fa fa-search"></i></button>
+                <input type="search" value={value} onChange={(e)=>handle_change(e)} className="search" placeholder="search contact" />
+                <button type="submit" className="" ><i className="fa fa-search"></i></button>
             </form>
-            <span class="contact">
-                <img src={user_img} alt="user image" class="user-image" />
+            <span className="contact">
+                <img src={user_img} alt="user" className="user-image" />
                 <p>Nockk lynn <br/><i>online</i> </p>
             </span>
             
-            <span class="contact">
-                <img src={user_img} alt="user image" class="user-image" />
+            <span className="contact">
+                <img src={user_img} alt="user" className="user-image" />
                 <p>Nockk lynn <br/><i>online</i> </p>
             </span>
 
             {
                 users.map( user => <span class="contact">
-                    <img src={user_img} alt="user image" class="user-image" />
+                    <img src={user_img} alt="user" className="user-image" />
                     <p>{user} <br/><i>online</i> </p>
                 </span> )
             }

@@ -3,16 +3,17 @@ import user from "../../images/user.jpg"
 import {handle_submit} from "./helpers/handle_submit";
 import { socket } from "../../socket"
 import { userObject } from "../../header/header";
+import { useMediaQuery } from "../../device_hook";
 import "./chat.css";
 
 
-const CHAT =()=> {
+const CHAT =({dispatch})=> {
 
 
     let space = (
-        <span class="contact">
-            <img src={user} alt="user" class="current-image" />
-            <p>The Common Room <br/><i>{online_status}</i> </p>
+        <span className="contact row-reverse">
+            <img src={user} alt="user" className="current-image" />
+            <p>The Common Room <br/><i>{}</i> </p>
         </span>
     )
 
@@ -20,6 +21,14 @@ const CHAT =()=> {
     const [chat_space, setChat_space] = useState(space);
     const [online_status, setOnline_status] = useState("offline")
     const [message_status, setMessage_status] = useState("sending")
+    const [icon, setIcon] = useState(null);
+
+    let aside = <i onClick={()=>{dispatch({action: "ASIDE", dispatch});console.log("aside")}} className="fa fa-video">c</i>;
+    let screen = useMediaQuery();
+    useEffect(()=>{
+        screen <= 425 ? setIcon(aside) : setIcon(null)
+
+    },[])
 
     const messages_ref = useRef(chats[chats.length-1]);
     const to_last_message =()=> {
@@ -61,23 +70,21 @@ const CHAT =()=> {
         <section id="chat">
             <span id="chat-buddy">
                 {chat_space}
-                <span class="icons" >
-                    <i class="fa fa-video"></i>
-                    <i class="fa fa-phone"></i>                    
-                    <i class="fa fa-user"></i>                    
+                <span className="icons" >
+                    {icon}                   
                 </span>
             </span>
 
             <section  id="message-container" >
 
-                <p class="buddy">
+                <p className="buddy">
                     hey Nockk, I heard you learning to fight karate now.
                     hope that's going super awesome cuz I'm looking to 
                     cause some mayhem downtown in the shortest time possible
                     seeing as i know you gat my back....<br/> <i>12:02pm</i>
                 </p>
 
-                <p class="me">
+                <p className="me">
                     hey Nockk, I heard you learning to fight karate now.
                     hope that's going super awesome cuz I'm looking to 
                     cause some mayhem downtown in the shortest time possible

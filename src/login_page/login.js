@@ -1,17 +1,19 @@
 
 
 import React, { useState, useEffect } from "react";
+import { useMediaQuery } from "../device_hook";
 import { handle_submit } from "./login_page_forms";
 import "./login.css";
 
 export const DEMO =( {dispatch} )=> {
 
     const [response, setResponse] = useState("");
+    let screen = useMediaQuery()
 
     const callback=(message, bool)=> {
         setResponse(message);
         if (bool === true){
-            dispatch({action: "logged_in"})
+            screen[0] <= 425 ? dispatch({action: "CHAT", dispatch}) : dispatch({action: "logged_in", dispatch})
         }
     }
 

@@ -26,10 +26,13 @@ label[for=name] {
 
 .login_button {
     place-self: center;
+    background-color: rgb(60, 60, 114);
     margin-top: 20px;
     margin-bottom: 50px;
-    font-size: large;
+    font-size: larger;
     padding: 5px 20px;
+    width: auto;
+    color: whitesmoke;
 }
 
 #welcome_page {
@@ -48,3 +51,12 @@ label[for=name] {
     align-items: center;
 }
 
+@media screen and (max-width: 425px) {
+    #text_section {
+        display: none;
+    }
+
+    #welcome_page {
+        grid-template-columns: 1fr;
+    }
+}

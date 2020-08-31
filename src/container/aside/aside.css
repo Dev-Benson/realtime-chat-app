@@ -1,4 +1,9 @@
 
+
+.hide {
+    display: none;
+}
+
 button {
     background-color: rgba(224, 219, 219, 0.377);
     border: none;
@@ -54,6 +59,12 @@ button {
 
     form {
         width: 100vw;
+    }
+
+    #contact-list {
+        width: 100vw;
+        height: 100vh;
+        border: none;
     }
 
 /*classes*/
