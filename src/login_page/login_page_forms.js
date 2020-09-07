@@ -1,6 +1,7 @@
 import { socket } from "../socket";
 
 export const handle_submit =( e, callback )=> {
+    socket.emit("testt");
 
     e.preventDefault();
     let formData = new FormData(e.target);
@@ -8,7 +9,4 @@ export const handle_submit =( e, callback )=> {
 
     formData.forEach( data => nickName = data);
     socket.emit("join", { nickName}, callback );
-    console.log(nickName,callback );
-    // e.target.reset()
-
 };

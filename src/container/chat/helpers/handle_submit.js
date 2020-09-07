@@ -4,13 +4,19 @@ export const handle_submit =( e, callback, sender )=> {
     
     e.preventDefault();
     let formData = new FormData(e.target);
-    let time_stamp = Date.now()
+    const options = {
+        hour12 : true,
+        hour:  "2-digit",
+        minute: "2-digit",
+    }
+
+    let time_stamp = new Date().toLocaleString("en-US", options);
     console.log(time_stamp)
     let message;
 
     formData.forEach( data => message = data);
     callback({
-        message
+        message, time_stamp, sender:"me"
     });
 
     // console.log({message});

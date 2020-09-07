@@ -1,6 +1,6 @@
 
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useMediaQuery } from "../device_hook";
 import { handle_submit } from "./login_page_forms";
 import "./login.css";
@@ -13,7 +13,7 @@ export const DEMO =( {dispatch} )=> {
     const callback=(message, bool)=> {
         setResponse(message);
         if (bool === true){
-            screen[0] <= 425 ? dispatch({action: "CHAT", dispatch}) : dispatch({action: "logged_in", dispatch})
+            screen <= 425 ? dispatch({action: "CHAT", dispatch}) : dispatch({action: "logged_in", dispatch})
         }
     }
 
@@ -21,6 +21,7 @@ export const DEMO =( {dispatch} )=> {
         <form id="demo_form" onSubmit={
             e=> {
                 handle_submit(e, callback)
+                // dispatch({action: "logged_in", dispatch})
             } 
         }>
             <p className="join_response">{response}</p>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useMediaQuery } from "../../device_hook";
+// import { useMediaQuery } from "../../device_hook";
 import user_img from "../../images/user.jpg"
 import "./aside.css";
 import { socket } from "../../socket";
+import search from "./search.svg";
 
 const ASIDE =()=> {
 
@@ -11,7 +12,9 @@ const ASIDE =()=> {
     // const [className, setClassName] = useState("");
     const [user_store, setUser_store] = useState([]);
 
-    let screen = useMediaQuery()
+    let Search = <i><img alt="" src={search} width="auto" className="M-Icon" /></i>;
+
+    // let screen = useMediaQuery()
 
     socket.on("user_joined", user_joined=> {
         setUser_store([...user_store,user_joined.nickName]);
@@ -37,9 +40,9 @@ const ASIDE =()=> {
 
             <form id="search-contact">
                 <input type="search" value={value} onChange={(e)=>handle_change(e)} className="search" placeholder="search contact" />
-                <button type="submit" className="" ><i className="fa fa-search"></i></button>
+                <button type="submit" className="" >{Search}</button>
             </form>
-            <span className="contact">
+            {/* <span className="contact">
                 <img src={user_img} alt="user" className="user-image" />
                 <p>Nockk lynn <br/><i>online</i> </p>
             </span>
@@ -47,7 +50,7 @@ const ASIDE =()=> {
             <span className="contact">
                 <img src={user_img} alt="user" className="user-image" />
                 <p>Nockk lynn <br/><i>online</i> </p>
-            </span>
+            </span> */}
 
             {
                 users.map( user => <span class="contact">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./header.css";
+import messages from "./chat.svg";
 import { socket } from "../socket";
 import user_img from "../images/user.jpg"
 import { useMediaQuery } from "../device_hook";
@@ -26,11 +27,11 @@ export const USER_OBJECT =()=>{
 export const HEADER =({dispatch})=> {
     const [Chat, setChat] = useState(null);
     const [reverse, setReverse] = useState("");
-    const [screen, setScreen] = useState([]);
+    const [screen, setScreen] = useState(null);
 
     let title= <p>D.Benson Realtime Chat App</p>
     let Screen = useMediaQuery()
-    let chat = <i onClick={()=>{dispatch({action: "CHAT", dispatch})}} className="fa fa-video">A</i>;
+    let chat = <i className="chat-messages" onClick={()=>{dispatch({action: "CHAT", dispatch})}} ><img alt="" src={messages} width="auto" className="messages" /></i>;
 
 
     useEffect(()=>{
@@ -38,12 +39,12 @@ export const HEADER =({dispatch})=> {
         
         if(screen <= 425){
             setChat(chat);
-            setReverse("row-reverse")
+            setReverse("row-reverse");
         }else{
             setChat(title);
             setReverse("")
         }
-    },[])
+    },[screen])
 
     return (
         <section id="header" className={reverse} >
