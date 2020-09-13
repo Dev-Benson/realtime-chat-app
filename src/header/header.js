@@ -6,6 +6,7 @@ import user_img from "../images/user.jpg"
 import { useMediaQuery } from "../device_hook";
 
 export let userObject = {};
+export let my_username;
 
 export const USER_OBJECT =()=>{
     const [user, setUser] = useState({});
@@ -13,6 +14,7 @@ export const USER_OBJECT =()=>{
     socket.on("user_object", user_object =>{
         setUser(user_object);
         userObject = user_object;
+        my_username = user_object.nickName
     } )
     
     return (

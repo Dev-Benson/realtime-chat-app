@@ -2,7 +2,6 @@ import React, { useState, useEffect, useReducer } from 'react';
 import { socket } from "./socket"
 import { DEMO } from "./login_page/login";
 import { HEADER } from "./header/header";
-// import { useMediaQuery } from "./device_hook";
 import CONTAINER from "./container/container";
 import CHAT from "./container/chat/chat";
 import ASIDE from "./container/aside/aside";
@@ -48,18 +47,6 @@ const componentReducer =(state, {action, dispatch} )=>{
 const App=()=> {
     const [display , dispatch] = useReducer(componentReducer)
     const [response, setResponse] = useState([]);
-    // const [screen, setScreen] = useState([])
-
-    // let screen_size = useMediaQuery()
-
-    // useEffect( ()=>{
-        
-    //     setScreen(screen_size)
-    //     dispatch({ action: "", dispatch });
-
-
-
-    // },[screen_size] );
 
     useEffect(()=>{
         dispatch({ action: "", dispatch });
@@ -67,7 +54,6 @@ const App=()=> {
             setResponse(user_joined)
         });
         
-        // return ()=> socket.disconnect();
     },[])
 
     return(
